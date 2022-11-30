@@ -1,0 +1,25 @@
+{
+    "root": true,
+    "plugins": [
+      "prettier"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": "error" ,
+      "no-use-before-define": ["error", { "functions": true, "classes": true }],
+      "prefer-const": "error",
+      "arrow-body-style": "off",
+      "prefer-arrow-callback": "off"
+    },
+    "parserOptions": {
+      "ecmaVersion": 2017,
+      "sourceType": "module"
+    },
+    "env": {
+      "node": true,
+      "es6": true
+    }
+}
