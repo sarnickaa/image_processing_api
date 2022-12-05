@@ -8,14 +8,20 @@
       "prettier"
     ],
     "rules": {
-      "prettier/prettier": "error" ,
+      "prettier/prettier": 
+      [
+        "error",
+        {
+            "parser": "typescript"
+        }
+      ],
       "no-use-before-define": ["error", { "functions": true, "classes": true }],
       "prefer-const": "error",
       "arrow-body-style": "off",
       "prefer-arrow-callback": "off"
     },
     "parserOptions": {
-      "ecmaVersion": 2017,
+      "ecmaVersion": 2021,
       "sourceType": "module"
     },
     "env": {
