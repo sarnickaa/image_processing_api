@@ -4,7 +4,7 @@ const routes = express.Router();
 import images from './api/images';
 
 routes.get('/', (req, res) => {
-    res.send('main api route 🎀')    
+    res.send('<h1>Main API route!!!</h1>')    
 });
 routes.use('/images', images);
 

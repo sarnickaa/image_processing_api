@@ -9,7 +9,8 @@ export default async (filename: string, width: string, height: string): Promise<
         try {
             await fsPromises.mkdir(`${__dirname}/../../thumbs`);
         } catch (err) {
-            console.log(`${err}:'there was an error making the thumbs dir 👹`)
+            console.error(`Error: 'there was an error making the thumbs directory 👹`)
+            return err
         }
     }
 
@@ -20,13 +21,15 @@ export default async (filename: string, width: string, height: string): Promise<
        filepath = `${__dirname}/../../thumbs/${width}-${height}-${filename}`
     } catch (err) {
         // if check fails:
-        console.log(err, `📒 image doesn't exist yet`)
+        console.info(`😬 resized image doesn't exist yet. Fetching full image for resize...`)
+        
         try {
-            // get image buffer from filesystem:
+            // get fullsize image buffer from filesystem:
             const contents = await fsPromises.readFile(`${__dirname}/../../full/${filename}`);
             filepath = contents
         } catch (err) {
             if (err instanceof Error) {
+                console.error(`👹 Oh no! could not fetch full sized image...`)
                 filepath = err
             }
         }

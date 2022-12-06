@@ -7,21 +7,24 @@ export default async (filename: string, width: string, height: string) => {
   let rsHeight = parseInt(height);
   let rsWidth = parseInt(width);
   
-      // get image buffer from filesystem or return filepath string if image exists:
-      const image = ((await locator(filename, width, height) as unknown) as string | Error | Buffer)
+  // get image buffer or return filepath string if image exists:
+  const image = ((await locator(filename, width, height) as unknown) as string | Error | Buffer)
 
-      //resize image and save to file if it doesn't exist already
-      if (Buffer.isBuffer(image)) {
-        try {
-          await sharp(image).resize({
-            width: rsWidth,
-            height: rsHeight
-          }).toFile(`${__dirname}/../../thumbs/${width}-${height}-${filename}`)
-          return path.resolve(`${__dirname}/../../thumbs/${width}-${height}-${filename}`)
-        } catch (err) {
-          console.log('error!! 🔥', err)
-        }
-  } else if (typeof image === 'string') {
+  //If Buffer, resize image and save to file. Return filepath:
+  if (Buffer.isBuffer(image)) {
+    console.info('🫡 performing resize...')
+    try {
+      await sharp(image).resize({
+        width: rsWidth,
+        height: rsHeight
+      }).toFile(`${__dirname}/../../thumbs/${width}-${height}-${filename}`)
+      return path.resolve(`${__dirname}/../../thumbs/${width}-${height}-${filename}`)
+    } catch (err) {
+      console.error('🫣 oh no! there was an error performing resize...')
+      return err
+    }
+  } else if (typeof image === 'string' && image !== '') {
+    console.info('👍 resized image already exists...')
     return path.resolve(`${__dirname}/../../thumbs/${width}-${height}-${filename}`)
   } else {
     return image
