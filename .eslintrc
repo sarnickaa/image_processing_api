@@ -1,7 +1,8 @@
 {
     "root": true,
     "plugins": [
-      "prettier"
+      "prettier",
+      "@typescript-eslint"
     ],
     "extends": [
       "eslint:recommended",
@@ -21,8 +22,9 @@
       "prefer-arrow-callback": "off"
     },
     "parserOptions": {
-      "ecmaVersion": 2021,
-      "sourceType": "module"
+      "ecmaVersion": 2017,
+      "sourceType": "module",
+      "parser": "@typescript-eslint/parser"
     },
     "env": {
       "node": true,

@@ -1,1 +1,3 @@
 src/tests/helpers/reporter.ts
+src/tests/assets/*
+src/tests/helpers/myHelpers.ts
