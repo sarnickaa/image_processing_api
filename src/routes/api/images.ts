@@ -1,6 +1,5 @@
 import express from 'express'
 const images = express.Router()
-// import { ImageParams } from '../../../src/@customTypes/imageTypes'
 import transform from '../../../services/transformer/transform'
 import { validateParams } from '../../utils/utils'
 
@@ -16,7 +15,7 @@ images.get('/', async (req, res) => {
     const transformedImagePath = await transform(filename, width, height)
 
     if (!(transformedImagePath instanceof Error)) {
-      res.sendFile(transformedImagePath as unknown as string)
+      res.sendFile((transformedImagePath as unknown) as string)
     } else {
       if (transformedImagePath.message) {
         res.status(404).json({ error: transformedImagePath.message })
