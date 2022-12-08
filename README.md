@@ -28,7 +28,7 @@ This will create a `full` directory at the root of the repo if it doesnt already
 - Upload any fullsize `.jpg` images you wish to resize to the `full` directory. (the api currently only supports a `.jpg` extension.)
 
 3. Resize an image:
-- access the `localhost:3000/api/images/?filename={filename.jpg}&height={px}&width={px}`; supplying the desired image filename, width and height.
+- access the URL: `localhost:3000/api/images/?filename={filename.jpg}&height={px}&width={px}`; supplying the desired image filename, width and height.
 - the resized image will be served to the above URL.
 - the resized image will also be saved to a `thumbs` directory at the root of the repository according to the following convention: `*/thumbs/{width}-{height}-{filename}`
 
@@ -51,8 +51,13 @@ npm run copy:images
 ```
 - creating the directory manually and uploading desired `.jpg` fullsize files.
 
-4. Resize an image:
-The resize process is the same as that described in [How to use this API](#how-to-use-this-api) - step 3
+4. Resize an image running compiled code:
+- Navigate to `build/src`
+- Run the following command:
+```
+node .
+```
+- access the URL: `localhost:3000/api/images/?filename={filename.jpg}&height={px}&width={px}`; supplying the desired image filename, width and height.
 
 ## Testing:
 1. Run the test suite with the following command:
@@ -69,5 +74,12 @@ npm run lint
 - note: currently, the following directories are excluded from linting:
     -   src/tests/assets
     -   src/tests/helpers
-    
+
 ## Improvements
+- make the following features configurable for the user:
+    -   location of `full/thumbs` directories
+    -   naming convention for resized images
+- create a frontend client to:
+    -   display available images in a gallery
+    -   upload images
+
