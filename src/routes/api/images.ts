@@ -3,7 +3,7 @@ const images = express.Router()
 import transform from '../../../services/transformer/transform'
 import { validateParams } from '../../utils/utils'
 
-images.get('/', async (req, res) => {
+images.get('/', async (req: express.Request, res: express.Response): Promise<void> => {
   const params = req.query
   const { filename, width, height } = params
 
